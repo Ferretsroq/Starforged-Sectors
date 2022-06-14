@@ -252,10 +252,10 @@ class Settlement
 	}
 	static GenerateSettlement(oracles)
 	{
-		let nameOracle = oracles['Settlements']['Oracles/Settlements/Name'];
-		let locationOracle = oracles['Settlements']['Oracles/Settlements/Location'];
-		let projectsOracle = oracles['Settlements']['Oracles/Settlements/Projects'];
-		let troubleOracle = oracles['Settlements']['Oracles/Settlements/Trouble'];
+		let nameOracle = oracles['Settlements']['/Oracles/Settlements/Name'];
+		let locationOracle = oracles['Settlements']['/Oracles/Settlements/Location'];
+		let projectsOracle = oracles['Settlements']['/Oracles/Settlements/Projects'];
+		let troubleOracle = oracles['Settlements']['/Oracles/Settlements/Trouble'];
 		let name = RollOnOracle(nameOracle)[0];
 		let location = RollOnOracle(locationOracle)[0];
 		let project0 = RollOnOracle(projectsOracle)[0];
@@ -306,13 +306,13 @@ class Planet
 	}
 	static GeneratePlanet(oracles)
 	{
-		let classOracle = oracles['Planets']['Oracles/Planets/Class'];
-		let planetClass = RollOnOracle(`/Oracles/${classOracle[0].substr(1).split(' ')[0]}`);
-		let atmosphereOracle = oracles['Planets'][`Oracles/Planets/${planetClass}/Atmosphere`];
+		let classOracle = oracles['Planets']['/Oracles/Planets/Class'];
+		let planetClass = RollOnOracle(classOracle)[0].substr(2).split(' ')[0];
+		let atmosphereOracle = oracles['Planets'][`/Oracles/Planets/${planetClass}/Atmosphere`];
 		let atmosphere = RollOnOracle(atmosphereOracle)[0];
-		let observedFromSpace = RollOnOracle(oracles['Planets'][`Oracles/Planets/${planetClass}/Observed_From_Space`])[0];
-		let feature = RollOnOracle(oracles['Planets'][`Oracles/Planets/${planetClass}/Feature`])[0];
-		let lifeStatus = RollOnOracle(oracles['Planets'][`Oracles/Planets/${planetClass}/Life`])[0];
+		let observedFromSpace = RollOnOracle(oracles['Planets'][`/Oracles/Planets/${planetClass}/Observed_From_Space`])[0];
+		let feature = RollOnOracle(oracles['Planets'][`/Oracles/Planets/${planetClass}/Feature`])[0];
+		let lifeStatus = RollOnOracle(oracles['Planets'][`/Oracles/Planets/${planetClass}/Life`])[0];
 		let lifebearing = true;
 		if(lifeStatus == 'None' || lifeStatus == 'Extinct')
 		{
@@ -322,13 +322,13 @@ class Planet
 		let opportunity = null;
 		if(lifebearing)
 		{
-			peril = RollOnOracle(oracles['Planets']['Oracles/Planets/Peril/Lifebearing'])[0];
-			opportunity = RollOnOracle(oracles['Planets']['Oracles/Planets/Opportunity/Lifebearing'])[0];
+			peril = RollOnOracle(oracles['Planets']['/Oracles/Planets/Peril/Lifebearing'])[0];
+			opportunity = RollOnOracle(oracles['Planets']['/Oracles/Planets/Opportunity/Lifebearing'])[0];
 		}
 		else
 		{
-			peril = RollOnOracle(oracles['Planets']['Oracles/Planets/Peril/Lifeless'])[0];
-			opportunity = RollOnOracle(oracles['Planets']['Oracles/Planets/Opportunity/Lifeless'])[0];
+			peril = RollOnOracle(oracles['Planets']['/Oracles/Planets/Peril/Lifeless'])[0];
+			opportunity = RollOnOracle(oracles['Planets']['/Oracles/Planets/Opportunity/Lifeless'])[0];
 		}
 		return new Planet(planetClass, atmosphere, observedFromSpace, feature, lifeStatus, peril, opportunity);
 	}
@@ -404,11 +404,11 @@ class NPC
 	}
 	static GenerateNPC(oracles)
 	{
-		let name = `${RollOnOracle(oracles['Characters']['Oracles/Characters/Name/Given_Name'])[0]} ${RollOnOracle(oracles['Characters']['Characters / Name / Family Name'])[0]}`;
-		let firstLook = RollOnOracle(oracles['Characters']['Oracles/Characters/First_Look'])[0];
-		let disposition = RollOnOracle(oracles['Characters']['Oracles/Characters/Disposition'])[0];
-		let role = RollOnOracle(oracles['Characters']['Oracles/Characters/Role'])[0];
-		let goal = RollOnOracle(oracles['Characters']['Oracles/Characters/Goal'])[0];
+		let name = `${RollOnOracle(oracles['Characters']['/Oracles/Characters/Name/Given_Name'])[0]} ${RollOnOracle(oracles['Characters']['/Oracles/Characters/Name/Family_Name'])[0]}`;
+		let firstLook = RollOnOracle(oracles['Characters']['/Oracles/Characters/First_Look'])[0];
+		let disposition = RollOnOracle(oracles['Characters']['/Oracles/Characters/Disposition'])[0];
+		let role = RollOnOracle(oracles['Characters']['/Oracles/Characters/Role'])[0];
+		let goal = RollOnOracle(oracles['Characters']['/Oracles/Characters/Goal'])[0];
 		return new NPC(name, firstLook, disposition, role, goal);
 	}
 	toEmbed()
@@ -437,7 +437,7 @@ class StellarObject
 	}
 	static GenerateStellarObject(oracles)
 	{
-		return new StellarObject(RollOnOracle(oracles['Space']['Oracles/Space/Stellar_Object'])[0]);
+		return new StellarObject(RollOnOracle(oracles['Space']['/Oracles/Space/Stellar_Object'])[0]);
 	}
 	toEmbed()
 	{
@@ -465,11 +465,11 @@ class Starship
 	}
 	static GenerateStarship(oracles)
 	{
-		let name = RollOnOracle(oracles['Starships']['Oracles/Starships/Name'])[0];
-		let starshipType = RollOnOracle(oracles['Starships']['Oracles/Starships/Type'])[0];
-		let fleet = RollOnOracle(oracles['Starships']['Oracles/Starships/Fleet'])[0];
-		let initialContact = RollOnOracle(oracles['Starships']['Oracles/Starships/Initial_Contact'])[0];
-		let firstLook = RollOnOracle(oracles['Starships']['Oracles/Starships/First_Look'])[0];
+		let name = RollOnOracle(oracles['Starships']['/Oracles/Starships/Name'])[0];
+		let starshipType = RollOnOracle(oracles['Starships']['/Oracles/Starships/Type'])[0];
+		let fleet = RollOnOracle(oracles['Starships']['/Oracles/Starships/Fleet'])[0];
+		let initialContact = RollOnOracle(oracles['Starships']['/Oracles/Starships/Initial_Contact'])[0];
+		let firstLook = RollOnOracle(oracles['Starships']['/Oracles/Starships/First_Look'])[0];
 		return new Starship(name, starshipType, fleet, initialContact, firstLook);
 
 	}
@@ -503,10 +503,10 @@ class Derelict
 	}
 	static GenerateDerelict(oracles)
 	{
-		let location = RollOnOracle(oracles['Derelicts']['Oracles/Derelicts/Location'])[0];
-		let type = RollOnOracle(oracles['Derelicts'][`Oracles/Derelicts/Type/${location}`])[0];
-		let condition = RollOnOracle(oracles['Derelicts']['Oracles/Derelicts/Condition'])[0];
-		let outerFirstLook = RollOnOracle(oracles['Derelicts']['Oracles/Derelicts/Outer_First_Look'])[0];
+		let location = RollOnOracle(oracles['Derelicts']['/Oracles/Derelicts/Location'])[0];
+		let type = RollOnOracle(oracles['Derelicts'][`/Oracles/Derelicts/Type/${location.split(' ').join('_')}`])[0];
+		let condition = RollOnOracle(oracles['Derelicts']['/Oracles/Derelicts/Condition'])[0];
+		let outerFirstLook = RollOnOracle(oracles['Derelicts']['/Oracles/Derelicts/Outer_First_Look'])[0];
 		let planet = null;
 		if(location === 'Planetside' || location === 'Orbital')
 		{
@@ -552,12 +552,12 @@ class PrecursorVault
 	}
 	static GeneratePrecursorVault(oracles)
 	{
-		let location = RollOnOracle(oracles['Vaults']['Oracles/Vaults/Location'])[0];
-		let scale = RollOnOracle(oracles['Vaults'][`Oracles/Vaults/Scale`])[0];
-		let form = RollOnOracle(oracles['Vaults']['Oracles/Vaults/Form'])[0];
-		let shape = RollOnOracle(oracles['Vaults']['Oracles/Vaults/Shape'])[0];
-		let material = RollOnOracle(oracles['Vaults']['Oracles/Vaults/Material'])[0];
-		let firstLook = RollOnOracle(oracles['Vaults']['Oracles/Vaults/Outer_First_Look'])[0];
+		let location = RollOnOracle(oracles['Vaults']['/Oracles/Vaults/Location'])[0];
+		let scale = RollOnOracle(oracles['Vaults'][`/Oracles/Vaults/Scale`])[0];
+		let form = RollOnOracle(oracles['Vaults']['/Oracles/Vaults/Form'])[0];
+		let shape = RollOnOracle(oracles['Vaults']['/Oracles/Vaults/Shape'])[0];
+		let material = RollOnOracle(oracles['Vaults']['/Oracles/Vaults/Material'])[0];
+		let firstLook = RollOnOracle(oracles['Vaults']['/Oracles/Vaults/Outer_First_Look'])[0];
 		let planet = null;
 		if(location === 'Planetside' || location === 'Orbital')
 		{

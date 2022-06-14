@@ -24,7 +24,7 @@ module.exports =
 		let sector = Sector.fromJSON(sectorData);
 		let rows = this.ShowOriginalSector(sector);
 		//this.ShowSector();
-		await interaction.reply({content: `${this.sector.name} Sector`, components: this.rows});
+		await interaction.reply({content: `${sector.name} Sector`, components: rows});
 		let message = interaction.fetchReply();
 		let id = message.id;
 
