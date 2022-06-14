@@ -17,9 +17,9 @@ class Sector
 	}
 	static GenerateSector(oracles, region, id)
 	{
-		if(!fs.existsSync(`./Data/sectors/${id}`))
+		if(!fs.existsSync(`./data/sectors/${id}`))
 		{
-			fs.mkdirSync(`./Data/sectors/${id}`);
+			fs.mkdirSync(`./data/sectors/${id}`);
 		}
 		const sectorFiles = fs.readdirSync(`./data/sectors/${id}/`).filter(file => file.endsWith('.json'));
 		let namePrefix = RollOnOracle(oracles['Space']['/Oracles/Space/Sector_Name/Prefix'])[0];
@@ -66,11 +66,11 @@ class Sector
 	}
 	Save()
 	{
-		if(!fs.existsSync(`./Data/sectors/${this.id}`))
+		if(!fs.existsSync(`./data/sectors/${this.id}`))
 		{
-			fs.mkdirSync(`./Data/sectors/${this.id}`);
+			fs.mkdirSync(`./data/sectors/${this.id}`);
 		}
-		fs.writeFileSync(`./Data/sectors/${this.id}/${this.name}.json`, JSON.stringify(this, null, 2), 'utf8');
+		fs.writeFileSync(`./data/sectors/${this.id}/${this.name}.json`, JSON.stringify(this, null, 2), 'utf8');
 	}
 	static fromJSON(jsonData)
 	{
