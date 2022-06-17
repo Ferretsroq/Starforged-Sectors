@@ -63,7 +63,7 @@ module.exports =
 			let buttonRow = new MessageActionRow();
 			for(let column = 0; column < sector.grid[row].length; column++)
 			{
-				buttonRow.addComponents(new MessageButton().setCustomId(`sector${row}${column}`).setLabel(`${sector.grid[row][column].toString()}`).setStyle('PRIMARY'));
+				buttonRow.addComponents(new MessageButton().setCustomId(`loadsector${row}${column}`).setLabel(`${sector.grid[row][column].toString()}`).setStyle('PRIMARY'));
 			}
 			rows.push(buttonRow);
 		}
