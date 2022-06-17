@@ -25,7 +25,7 @@ module.exports =
 		let rows = this.ShowOriginalSector(sector);
 		//this.ShowSector();
 		await interaction.reply({content: `${sector.name} Sector`, components: rows});
-		let message = interaction.fetchReply();
+		let message = await interaction.fetchReply();
 		let id = message.id;
 
 		this.messages[id] = {rows: rows, sector: sector};
@@ -33,7 +33,7 @@ module.exports =
 	async ShowCell(interaction)
 	{
 		let id = interaction.message.id;
-		let rowcol = interaction.customId.split('sector')[1];
+		let rowcol = interaction.customId.split('loadsector')[1];
 		let row = rowcol[0];
 		let col = rowcol[1];
 		let [embeds, attachments] = this.messages[id].sector.grid[row][col].toEmbed();
