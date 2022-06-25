@@ -18,10 +18,10 @@ const rest = new REST({version: '9'}).setToken(token);
 {
 	try
 	{
-		for(guildId of guildIds)
-		{
-			await rest.put(Routes.applicationGuildCommands(clientId, guildId),{body: commands},);
-		}
+		//for(guildId of guildIds)
+		//{
+			await rest.put(Routes.applicationCommands(clientId),{body: commands},);
+		//}
 		console.log('Successfully registered application commands.');
 	}
 	catch (error)

@@ -386,36 +386,7 @@ client.on('interactionCreate', async interaction =>
 	}
 });
 
-// Guild join listener
-client.on('guildCreate', async (guild) =>
-{
-	const commands = [];
-	const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-	for (const file of commandFiles)
-	{
-		const command = require(`./commands/${file}`);
-		commands.push(command.data.toJSON());
-	}	
-	const rest = new REST({version: '9'}).setToken(token);
 
-	(async () => 
-	{
-		try
-		{
-			let guildId = guild.id;
-			let configFile = fs.readFileSync('./config.json');
-			let config = JSON.parse(configFile);
-			config.guildIds.push(guildId);
-			fs.writeFileSync('./config.json', JSON.stringify(config, 2, null), 'utf8')
-			await rest.put(Routes.applicationGuildCommands(clientId, guildId),{body: commands},);
-			console.log('Successfully registered application commands.');
-		}
-		catch (error)
-		{
-			console.error(error);
-		}
-	})();
-});
 
 //Login to Discord with your client's token
 client.login(token);
