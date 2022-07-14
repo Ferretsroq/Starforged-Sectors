@@ -72,7 +72,7 @@ module.exports =
 	async ShowSector(interaction)
 	{
 		let id = interaction.message.id;
-		this.rows = [];
+		this.messages[id].rows = [];
 		for(let row = 0; row < this.messages[id].sector.grid.length; row++)
 		{
 			let buttonRow = new MessageActionRow();
