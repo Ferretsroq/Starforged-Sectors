@@ -69,7 +69,7 @@ module.exports =
 		}
 		return rows;
 	},
-	async ShowSector()
+	async ShowSector(interaction)
 	{
 		let id = interaction.message.id;
 		this.rows = [];
