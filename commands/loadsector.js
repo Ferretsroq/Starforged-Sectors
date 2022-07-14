@@ -86,7 +86,7 @@ module.exports =
 	async ShowSectorButtons(interaction)
 	{
 		let id = interaction.message.id;
-		await this.ShowSector()
+		await this.ShowSector(interaction)
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddPOI(interaction)
@@ -110,7 +110,7 @@ module.exports =
 		let col = rowcol[1];
 		this.messages[id].sector.AddPOI(row, col, text);
 		this.messages[id].sector.Save();
-		await this.ShowSector();
+		await this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddSettlement(interaction, oracles)
@@ -121,7 +121,7 @@ module.exports =
 		let col = rowcol[1];
 		this.messages[id].sector.AddSettlement(row, col, oracles);
 		this.messages[id].sector.Save()
-		await this.ShowSector();
+		await this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddStellarObject(interaction, oracles)
@@ -132,7 +132,7 @@ module.exports =
 		let col = rowcol[1];
 		this.sector.AddStellarObject(row, col, oracles);
 		this.sector.Save()
-		this.ShowSector();
+		this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddPlanet(interaction, oracles)
@@ -143,7 +143,7 @@ module.exports =
 		let col = rowcol[1];
 		this.messages[id].sector.AddPlanet(row, col, oracles);
 		this.messages[id].sector.Save()
-		await this.ShowSector();
+		await this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddStarship(interaction, oracles)
@@ -154,7 +154,7 @@ module.exports =
 		let col = rowcol[1];
 		this.messages[id].sector.AddStarship(row, col, oracles);
 		this.messages[id].sector.Save()
-		await this.ShowSector();
+		await this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddDerelict(interaction, oracles)
@@ -165,7 +165,7 @@ module.exports =
 		let col = rowcol[1];
 		this.messages[id].sector.AddDerelict(row, col, oracles);
 		this.messages[id].sector.Save()
-		await this.ShowSector();
+		await this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 	async AddPrecursorVault(interaction, oracles)
@@ -176,7 +176,7 @@ module.exports =
 		let col = rowcol[1];
 		this.messages[id].sector.AddPrecursorVault(row, col, oracles);
 		this.messages[id].sector.Save()
-		await this.ShowSector();
+		await this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
 }
