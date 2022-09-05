@@ -1,5 +1,5 @@
 const {SlashCommandBuilder} = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, SelectMenuComponent, MessageEmbed, ButtonStyle, TextInputComponent, TextInputStyle, Modal, ModalActionRowComponent } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, SelectMenuComponent, EmbedBuilder, ButtonStyle, TextInputBuilder, TextInputStyle, ModalBuilder, ModalActionRowComponent} = require('discord.js');
 const fs = require('fs');
 const {Sector} = require('../sector.js');
 
@@ -42,17 +42,17 @@ module.exports =
 		//let [embeds, attachments] = this.sector.grid[row][col].toEmbed();
 		this.messages[id].rows = [];
 		//this.rows = [];
-		let buttonRow0 = new MessageActionRow();
-		let buttonRow1 = new MessageActionRow();
-		let buttonRow2 = new MessageActionRow();
-		buttonRow0.addComponents(new MessageButton().setCustomId(`sectorAddPOI${row}${col}`).setLabel('Add POI').setStyle('PRIMARY'));
-		buttonRow0.addComponents(new MessageButton().setCustomId(`sectorAddSettlement${row}${col}`).setLabel('Add Settlement').setStyle('PRIMARY'));
-		buttonRow0.addComponents(new MessageButton().setCustomId(`sectorAddStellarObject${row}${col}`).setLabel('Add Stellar Object').setStyle('PRIMARY'));
-		buttonRow0.addComponents(new MessageButton().setCustomId(`sectorAddPlanet${row}${col}`).setLabel('Add Planet').setStyle('PRIMARY'));
-		buttonRow0.addComponents(new MessageButton().setCustomId(`sectorAddStarship${row}${col}`).setLabel('Add Starship').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId(`sectorAddDerelict${row}${col}`).setLabel('Add Derelict').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId(`sectorAddPrecursorVault${row}${col}`).setLabel('Add Precursor Vault').setStyle('PRIMARY'));
-		buttonRow2.addComponents(new MessageButton().setCustomId('sectorShowSector').setLabel('Show Sector').setStyle('PRIMARY'));
+		let buttonRow0 = new ActionRowBuilder();
+		let buttonRow1 = new ActionRowBuilder();
+		let buttonRow2 = new ActionRowBuilder();
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`sectorAddPOI${row}${col}`).setLabel('Add POI').setStyle(ButtonStyle.Primary));
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`sectorAddSettlement${row}${col}`).setLabel('Add Settlement').setStyle(ButtonStyle.Primary));
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`sectorAddStellarObject${row}${col}`).setLabel('Add Stellar Object').setStyle(ButtonStyle.Primary));
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`sectorAddPlanet${row}${col}`).setLabel('Add Planet').setStyle(ButtonStyle.Primary));
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`sectorAddStarship${row}${col}`).setLabel('Add Starship').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId(`sectorAddDerelict${row}${col}`).setLabel('Add Derelict').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId(`sectorAddPrecursorVault${row}${col}`).setLabel('Add Precursor Vault').setStyle(ButtonStyle.Primary));
+		buttonRow2.addComponents(new ButtonBuilder().setCustomId('sectorShowSector').setLabel('Show Sector').setStyle(ButtonStyle.Primary));
 		this.messages[id].rows.push(buttonRow0);
 		this.messages[id].rows.push(buttonRow1);
 		this.messages[id].rows.push(buttonRow2);
@@ -68,10 +68,10 @@ module.exports =
 		let rows = [];
 		for(let row = 0; row < sector.grid.length; row++)
 		{
-			let buttonRow = new MessageActionRow();
+			let buttonRow = new ActionRowBuilder();
 			for(let column = 0; column < sector.grid[row].length; column++)
 			{
-				buttonRow.addComponents(new MessageButton().setCustomId(`sector${row}${column}`).setLabel(`${sector.grid[row][column].toString()}`).setStyle('PRIMARY'));
+				buttonRow.addComponents(new ButtonBuilder().setCustomId(`sector${row}${column}`).setLabel(`${sector.grid[row][column].toString()}`).setStyle(ButtonStyle.Primary));
 			}
 			rows.push(buttonRow);
 		}
@@ -84,10 +84,10 @@ module.exports =
 		//this.rows = [];
 		for(let row = 0; row < this.messages[id].sector.grid.length; row++)
 		{
-			let buttonRow = new MessageActionRow();
+			let buttonRow = new ActionRowBuilder();
 			for(let column = 0; column < this.messages[id].sector.grid[row].length; column++)
 			{
-				buttonRow.addComponents(new MessageButton().setCustomId(`sector${row}${column}`).setLabel(`${this.messages[id].sector.grid[row][column].toString()}`).setStyle('PRIMARY'));
+				buttonRow.addComponents(new ButtonBuilder().setCustomId(`sector${row}${column}`).setLabel(`${this.messages[id].sector.grid[row][column].toString()}`).setStyle(ButtonStyle.Primary));
 			}
 			this.messages[id].rows.push(buttonRow);
 			//this.rows.push(buttonRow);
@@ -105,9 +105,9 @@ module.exports =
 		let rowcol = interaction.customId.split('sectorAddPOI')[1];
 		let row = rowcol[0];
 		let col = rowcol[1];
-		const modal = new Modal().setTitle(`Add POI to cell (${row},${col})`).setCustomId(`sectorAddPOIModal${row}${col}`);
-		const textInput = new TextInputComponent().setCustomId('sectorAddPOIText').setLabel(`Title`).setStyle('SHORT');
-		const row0 = new MessageActionRow();
+		const modal = new ModalBuilder().setTitle(`Add POI to cell (${row},${col})`).setCustomId(`sectorAddPOIModal${row}${col}`);
+		const textInput = new TextInputBuilder().setCustomId('sectorAddPOIText').setLabel(`Title`).setStyle(TextInputStyle.Short);
+		const row0 = new ActionRowBuilder();
 		row0.addComponents(textInput);
 		modal.addComponents(row0);
 		await interaction.showModal(modal);

@@ -1,5 +1,5 @@
 // Require the necessary discord.js classes
-const {Client, Collection, Intents} = require('discord.js');
+const {Client, Collection, GatewayIntentBits, InteractionType} = require('discord.js');
 const {token} = require('./config.json');
 const { clientId, guildIds } = require('./config.json');
 const { REST } = require('@discordjs/rest');
@@ -8,7 +8,7 @@ const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.characters = {};
 client.oracles = {};
 client.commands = new Collection();
@@ -34,7 +34,7 @@ client.once('ready', () => {
 // Command listener
 client.on('interactionCreate', async interaction =>
 {
-	if(!interaction.isCommand()) return;
+	if(interaction.type != InteractionType.ApplicationCommand) return;
 
 	const command = client.commands.get(interaction.commandName);
 	if(!command) return;
@@ -368,10 +368,7 @@ client.on('interactionCreate', async interaction =>
 // Modal submit listener
 client.on('interactionCreate', async interaction =>
 {
-	if(!interaction.isModalSubmit())
-	{
-		return;
-	}
+	if(interaction.type != InteractionType.ModalSubmit) return;
 	if(interaction.customId == 'modalFoo')
 	{
 		await client.commands.get('testmodal').Submit(interaction);

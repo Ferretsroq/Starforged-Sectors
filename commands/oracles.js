@@ -1,5 +1,5 @@
 const {SlashCommandBuilder} = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, SelectMenuComponent, MessageEmbed, ButtonStyle, Util } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, SelectMenuComponent, EmbedBuilder, ButtonStyle, Util } = require('discord.js');
 const fs = require('fs');
 const {RollOnOracle} = require('../oracle.js');
 
@@ -22,28 +22,28 @@ module.exports =
 		this.currentOracle = this.GetOracleAsList(this.oracleKeys[0]);
 		this.index = 0;
 
-		let buttonRow0 = new MessageActionRow();
-		let buttonRow1 = new MessageActionRow();
-		let buttonRow2 = new MessageActionRow();
-		let buttonRow3 = new MessageActionRow();
-		buttonRow0.addComponents(new MessageButton().setCustomId(`oraclesLeft`).setLabel(`\u2190`).setStyle('PRIMARY'));
-		buttonRow0.addComponents(new MessageButton().setCustomId(`oraclesRight`).setLabel(`\u2192`).setStyle('PRIMARY'));
-		buttonRow0.addComponents(new MessageButton().setCustomId(`oraclesRoll`).setLabel('Roll').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId('oraclesCharacterCreation').setLabel('Character Creation').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId('oraclesCharacters').setLabel('Characters').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId('oraclesCore').setLabel('Core').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId('oraclesCreatures').setLabel('Creatures').setStyle('PRIMARY'));
-		buttonRow1.addComponents(new MessageButton().setCustomId('oraclesDerelicts').setLabel('Derelicts').setStyle('PRIMARY'));
-		buttonRow2.addComponents(new MessageButton().setCustomId('oraclesFactions').setLabel('Factions').setStyle('PRIMARY'));
-		buttonRow2.addComponents(new MessageButton().setCustomId('oraclesLocationThemes').setLabel('Location Themes').setStyle('PRIMARY'));
-		buttonRow2.addComponents(new MessageButton().setCustomId('oraclesMisc').setLabel('Misc').setStyle('PRIMARY'));
-		buttonRow2.addComponents(new MessageButton().setCustomId('oraclesMoves').setLabel('Moves').setStyle('PRIMARY'));
-		buttonRow2.addComponents(new MessageButton().setCustomId('oraclesPlanets').setLabel('Planets').setStyle('PRIMARY'));
-		buttonRow3.addComponents(new MessageButton().setCustomId('oraclesSettlements').setLabel('Settlements').setStyle('PRIMARY'));
-		buttonRow3.addComponents(new MessageButton().setCustomId('oraclesSpace').setLabel('Space').setStyle('PRIMARY'));
-		buttonRow3.addComponents(new MessageButton().setCustomId('oraclesStarships').setLabel('Starships').setStyle('PRIMARY'));
-		buttonRow3.addComponents(new MessageButton().setCustomId('oraclesVaults').setLabel('Vaults').setStyle('PRIMARY'));
-		buttonRow3.addComponents(new MessageButton().setCustomId('oraclesCustom').setLabel('Custom').setStyle('PRIMARY'));
+		let buttonRow0 = new ActionRowBuilder();
+		let buttonRow1 = new ActionRowBuilder();
+		let buttonRow2 = new ActionRowBuilder();
+		let buttonRow3 = new ActionRowBuilder();
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`oraclesLeft`).setLabel(`\u2190`).setStyle(ButtonStyle.Primary));
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`oraclesRight`).setLabel(`\u2192`).setStyle(ButtonStyle.Primary));
+		buttonRow0.addComponents(new ButtonBuilder().setCustomId(`oraclesRoll`).setLabel('Roll').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId('oraclesCharacterCreation').setLabel('Character Creation').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId('oraclesCharacters').setLabel('Characters').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId('oraclesCore').setLabel('Core').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId('oraclesCreatures').setLabel('Creatures').setStyle(ButtonStyle.Primary));
+		buttonRow1.addComponents(new ButtonBuilder().setCustomId('oraclesDerelicts').setLabel('Derelicts').setStyle(ButtonStyle.Primary));
+		buttonRow2.addComponents(new ButtonBuilder().setCustomId('oraclesFactions').setLabel('Factions').setStyle(ButtonStyle.Primary));
+		buttonRow2.addComponents(new ButtonBuilder().setCustomId('oraclesLocationThemes').setLabel('Location Themes').setStyle(ButtonStyle.Primary));
+		buttonRow2.addComponents(new ButtonBuilder().setCustomId('oraclesMisc').setLabel('Misc').setStyle(ButtonStyle.Primary));
+		buttonRow2.addComponents(new ButtonBuilder().setCustomId('oraclesMoves').setLabel('Moves').setStyle(ButtonStyle.Primary));
+		buttonRow2.addComponents(new ButtonBuilder().setCustomId('oraclesPlanets').setLabel('Planets').setStyle(ButtonStyle.Primary));
+		buttonRow3.addComponents(new ButtonBuilder().setCustomId('oraclesSettlements').setLabel('Settlements').setStyle(ButtonStyle.Primary));
+		buttonRow3.addComponents(new ButtonBuilder().setCustomId('oraclesSpace').setLabel('Space').setStyle(ButtonStyle.Primary));
+		buttonRow3.addComponents(new ButtonBuilder().setCustomId('oraclesStarships').setLabel('Starships').setStyle(ButtonStyle.Primary));
+		buttonRow3.addComponents(new ButtonBuilder().setCustomId('oraclesVaults').setLabel('Vaults').setStyle(ButtonStyle.Primary));
+		buttonRow3.addComponents(new ButtonBuilder().setCustomId('oraclesCustom').setLabel('Custom').setStyle(ButtonStyle.Primary));
 		this.rows.push(buttonRow0);
 		this.rows.push(buttonRow1);
 		this.rows.push(buttonRow2);
@@ -56,7 +56,7 @@ module.exports =
 		const color = Util.resolveColor('0xababab');
 		//const title = name;
 		const description = oracleData;
-		const embed = new MessageEmbed().setColor(color).setDescription(description);
+		const embed = new EmbedBuilder().setColor(color).setDescription(description);
 		return embed;
 	},
 	async MoveLeft(interaction)

@@ -1,5 +1,5 @@
 fs = require('fs')
-const {MessageEmbed, Util } = require('discord.js');
+const {EmbedBuilder, Util, resolveColor} = require('discord.js');
 const {RollOnOracle} = require('./oracle.js');
 
 class Sector
@@ -225,10 +225,10 @@ class POI
 	}
 	toEmbed()
 	{
-		const color = Util.resolveColor('0xababab');
+		const color = resolveColor('0xababab');
 		const title = this.title;
 		const description = this.description;
-		const embed = new MessageEmbed().setColor(color).setTitle(title).setDescription(description);
+		const embed = new EmbedBuilder().setColor(color).setTitle(title).setDescription(description);
 		return embed;
 	}
 	static fromJSON(jsonData)
@@ -273,7 +273,7 @@ class Settlement
 	}
 	toEmbed()
 	{
-		return new MessageEmbed().setColor(Util.resolveColor('0xababab')).setTitle(this.title).setDescription(this.description).addFields({name: 'Location', value: this.location}, {name: 'Projects', value: `${this.project0}\n${this.project1}`}, {name: 'Trouble', value: this.trouble});
+		return new EmbedBuilder().setColor(resolveColor('0xababab')).setTitle(this.title).setDescription(this.description).addFields({name: 'Location', value: this.location}, {name: 'Projects', value: `${this.project0}\n${this.project1}`}, {name: 'Trouble', value: this.trouble});
 	}
 	static fromJSON(jsonData)
 	{
@@ -382,7 +382,7 @@ class Planet
 			color = '0x00b85c';
 		}
 		let title = `${this.planetClass} Planet`;
-		let embed = new MessageEmbed().setThumbnail(`attachment://Starforged-Planet-Token-${this.planetClass}-0${imnumber}.png`).setTitle(title).setColor(Util.resolveColor(color)).addFields({name: 'Atmosphere', value: this.atmosphere}, {name: 'Observed From Space', value: this.space}, {name: 'Feature', value: this.feature}, {name: 'Life', value: this.life}, {name: 'Peril', value: this.peril}, {name: 'Opportunity', value: this.opportunity});
+		let embed = new EmbedBuilder().setThumbnail(`attachment://Starforged-Planet-Token-${this.planetClass}-0${imnumber}.png`).setTitle(title).setColor(resolveColor(color)).addFields({name: 'Atmosphere', value: this.atmosphere}, {name: 'Observed From Space', value: this.space}, {name: 'Feature', value: this.feature}, {name: 'Life', value: this.life}, {name: 'Peril', value: this.peril}, {name: 'Opportunity', value: this.opportunity});
 		return [embed, imname];
 	}
 	static fromJSON(jsonData)
@@ -413,7 +413,7 @@ class NPC
 	}
 	toEmbed()
 	{
-		let embed = new MessageEmbed().setColor(Util.resolveColor('0xbababa')).setTitle('NPC').setDescription(this.name).addFields({name: 'First Look', value: this.firstLook}, {name: 'Disposition', value: this.disposition}, {name: 'Role', value: this.role}, {name: 'Goal', value: this.goal});
+		let embed = new EmbedBuilder().setColor(resolveColor('0xbababa')).setTitle('NPC').setDescription(this.name).addFields({name: 'First Look', value: this.firstLook}, {name: 'Disposition', value: this.disposition}, {name: 'Role', value: this.role}, {name: 'Goal', value: this.goal});
 		for(aspect in this.aspects)
 		{
 			embed.addFields({name: 'Aspect', value: this.aspects[aspect], inline: true});
@@ -441,7 +441,7 @@ class StellarObject
 	}
 	toEmbed()
 	{
-		let embed = new MessageEmbed().setColor(Util.resolveColor(this.color)).setTitle('Stellar Object').setDescription(this.name);
+		let embed = new EmbedBuilder().setColor(resolveColor(this.color)).setTitle('Stellar Object').setDescription(this.name);
 		return embed;
 	}
 	static fromJSON(jsonData)
@@ -475,7 +475,7 @@ class Starship
 	}
 	toEmbed()
 	{
-		let embed = new MessageEmbed().setColor(Util.resolveColor(this.color)).setTitle(this.name).setDescription(this.description);
+		let embed = new EmbedBuilder().setColor(resolveColor(this.color)).setTitle(this.name).setDescription(this.description);
 		embed.addFields({name: 'Type', value: this.type});
 		embed.addFields({name: 'Fleet', value: this.fleet});
 		embed.addFields({name: 'Initial Contact', value: this.contact});
@@ -516,7 +516,7 @@ class Derelict
 	}
 	toEmbed()
 	{
-		let embed = new MessageEmbed().setColor(Util.resolveColor(this.color)).setTitle(`${this.location} Derelict`).setDescription(this.description);
+		let embed = new EmbedBuilder().setColor(resolveColor(this.color)).setTitle(`${this.location} Derelict`).setDescription(this.description);
 		embed.addFields({name: 'Type', value: this.type});
 		embed.addFields({name: 'Condition', value: this.condition});
 		embed.addFields({name: 'Outer First Look', value: this.firstLook});
@@ -567,7 +567,7 @@ class PrecursorVault
 	}
 	toEmbed()
 	{
-		let embed = new MessageEmbed().setColor(Util.resolveColor(this.color)).setTitle(`${this.location} Precursor Vault`).setDescription(this.description);
+		let embed = new EmbedBuilder().setColor(resolveColor(this.color)).setTitle(`${this.location} Precursor Vault`).setDescription(this.description);
 		embed.addFields({name: 'Scale', value: this.scale});
 		embed.addFields({name: 'Form', value: this.form});
 		embed.addFields({name: 'Shape', value: this.shape});
