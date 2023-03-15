@@ -133,7 +133,7 @@ class Cell
 			}
 			return titles.join(', ');
 		}
-		return ' ';
+		return '\u2800';
 	}
 	toEmbed()
 	{
