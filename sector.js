@@ -225,7 +225,7 @@ class POI
 	}
 	toEmbed()
 	{
-		const color = resolveColor('0xababab');
+		const color = resolveColor(0xababab);
 		const title = this.title;
 		const description = this.description;
 		const embed = new EmbedBuilder().setColor(color).setTitle(title).setDescription(description);
@@ -273,7 +273,7 @@ class Settlement
 	}
 	toEmbed()
 	{
-		return new EmbedBuilder().setColor(resolveColor('0xababab')).setTitle(this.title).setDescription(this.description).addFields({name: 'Location', value: this.location}, {name: 'Projects', value: `${this.project0}\n${this.project1}`}, {name: 'Trouble', value: this.trouble});
+		return new EmbedBuilder().setColor(resolveColor(0xababab)).setTitle(this.title).setDescription(this.description).addFields({name: 'Location', value: this.location}, {name: 'Projects', value: `${this.project0}\n${this.project1}`}, {name: 'Trouble', value: this.trouble});
 	}
 	static fromJSON(jsonData)
 	{
@@ -334,52 +334,52 @@ class Planet
 	}
 	toEmbed()
 	{
-		let color = '0xababab';
+		let color = 0xababab;
 		let imnumber = Math.floor(Math.random()*2)+1;
 		let imname = `./data/images/Starforged-Planet-Token-${this.planetClass}-0${imnumber}.png`;
 		if(this.planetClass == 'Desert')
 		{
-			color = '0xebc934';
+			color = 0xebc934;
 		}
 		else if(this.planetClass == 'Furnace')
 		{
-			color = '0x944009';
+			color = 0x944009;
 		}
 		else if(this.planetClass == 'Grave')
 		{
-			color = '0x47403b';
+			color = 0x47403b;
 		}
 		else if(this.planetClass == 'Ice')
 		{
-			color = '0x00e1ff'
+			color = 0x00e1ff
 		}
 		else if(this.planetClass == 'Jovian')
 		{
-			color = '0x784000'
+			color = 0x784000
 		}
 		else if(this.planetClass == 'Jungle')
 		{
-			color = '0x007038';
+			color = 0x007038;
 		}
 		else if(this.planetClass == 'Ocean')
 		{
-			color = '0x003780';
+			color = 0x003780;
 		}
 		else if(this.planetClass == 'Rocky')
 		{
-			color = '0x361a00';
+			color = 0x361a00;
 		}
 		else if(this.planetClass == 'Shattered')
 		{
-			color = '0x3d342c';
+			color = 0x3d342c;
 		}
 		else if(this.planetClass == 'Tainted')
 		{
-			color = '0x800079';
+			color = 0x800079;
 		}
 		else if(this.planetClass == 'Vital')
 		{
-			color = '0x00b85c';
+			color = 0x00b85c;
 		}
 		let title = `${this.planetClass} Planet`;
 		let embed = new EmbedBuilder().setThumbnail(`attachment://Starforged-Planet-Token-${this.planetClass}-0${imnumber}.png`).setTitle(title).setColor(resolveColor(color)).addFields({name: 'Atmosphere', value: this.atmosphere}, {name: 'Observed From Space', value: this.space}, {name: 'Feature', value: this.feature}, {name: 'Life', value: this.life}, {name: 'Peril', value: this.peril}, {name: 'Opportunity', value: this.opportunity});
@@ -413,7 +413,7 @@ class NPC
 	}
 	toEmbed()
 	{
-		let embed = new EmbedBuilder().setColor(resolveColor('0xbababa')).setTitle('NPC').setDescription(this.name).addFields({name: 'First Look', value: this.firstLook}, {name: 'Disposition', value: this.disposition}, {name: 'Role', value: this.role}, {name: 'Goal', value: this.goal});
+		let embed = new EmbedBuilder().setColor(resolveColor(0xbababa)).setTitle('NPC').setDescription(this.name).addFields({name: 'First Look', value: this.firstLook}, {name: 'Disposition', value: this.disposition}, {name: 'Role', value: this.role}, {name: 'Goal', value: this.goal});
 		for(aspect in this.aspects)
 		{
 			embed.addFields({name: 'Aspect', value: this.aspects[aspect], inline: true});
@@ -433,7 +433,7 @@ class StellarObject
 		this.title = 'Stellar Object';
 		this.name = star;
 		this.description = 'Stellar Object';
-		this.color = '0x000000';
+		this.color = 0x000000;
 	}
 	static GenerateStellarObject(oracles)
 	{
@@ -461,7 +461,7 @@ class Starship
 		this.contact = initialContact;
 		this.look = firstLook;
 		this.description = 'Starship';
-		this.color = '0x3458eb';
+		this.color = 0x3458eb;
 	}
 	static GenerateStarship(oracles)
 	{
@@ -498,7 +498,7 @@ class Derelict
 		this.condition = condition;
 		this.firstLook = firstLook;
 		this.planet = planet;
-		this.color = '0x4d0000'
+		this.color = 0x4d0000;
 		this.description = 'Derelict';
 	}
 	static GenerateDerelict(oracles)
@@ -548,7 +548,7 @@ class PrecursorVault
 		this.firstLook = firstLook;
 		this.planet = planet;
 		this.description = 'Precursor Vault';
-		this.color = '0x38734d'
+		this.color = 0x38734d;
 	}
 	static GeneratePrecursorVault(oracles)
 	{
