@@ -53,7 +53,7 @@ module.exports =
 	},
 	FormatOracle(oracleData)
 	{
-		const color = Util.resolveColor('0xababab');
+		const color = parseInt('0xababab');
 		//const title = name;
 		const description = oracleData;
 		const embed = new EmbedBuilder().setColor(color).setDescription(description);

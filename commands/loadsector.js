@@ -130,8 +130,8 @@ module.exports =
 		let rowcol = interaction.customId.split('loadsectorAddStellarObject')[1];
 		let row = rowcol[0];
 		let col = rowcol[1];
-		this.sector.AddStellarObject(row, col, oracles);
-		this.sector.Save()
+		this.messages[id].sector.AddStellarObject(row, col, oracles);
+		this.messages[id].sector.Save()
 		this.ShowSector(interaction);
 		await interaction.update({components: this.messages[id].rows, embeds: [], files: []});
 	},
